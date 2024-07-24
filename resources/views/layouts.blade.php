@@ -75,8 +75,8 @@
                             <div class="collapse" id="dashboard">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="../demo1/index.html">
-                                            <span class="sub-item">Dashboard 1</span>
+                                        <a href="{{ route('dashboard') }}">
+                                            <span class="sub-item">Index</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -97,7 +97,7 @@
                             <div class="collapse" id="base">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="components/avatars.html">
+                                        <a href="{{ route('produk.index') }}">
                                             <span class="sub-item">Index</span>
                                         </a>
                                     </li>
@@ -345,7 +345,7 @@
                 <div class="page-inner">
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
                         <div>
-                            <h3 class="fw-bold mb-3">Dashboard</h3>
+                            <h3 class="fw-bold mb-3">@yield('title-heading')</h3>
                             <h6 class="op-7 mb-2">Free Bootstrap 5 Admin Dashboard</h6>
                         </div>
                         <div class="ms-md-auto py-2 py-md-0">
@@ -387,9 +387,6 @@
     <!-- Datatables -->
     <script src="{{ asset('assets/js/plugin/datatables/datatables.min.js') }}"></script>
 
-    <!-- Bootstrap Notify -->
-    <script src="{{ asset('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
-
     <!-- jQuery Vector Maps -->
     <script src="{{ asset('assets/js/plugin/jsvectormap/jsvectormap.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugin/jsvectormap/world.js') }}"></script>
@@ -403,34 +400,6 @@
     <!-- Kaiadmin DEMO methods, don't include it in your project! -->
     <script src="{{ asset('assets/js/setting-demo.js') }}"></script>
     <script src="{{ asset('assets/js/demo.js') }}"></script>
-    <script>
-        $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-            type: "line",
-            height: "70",
-            width: "100%",
-            lineWidth: "2",
-            lineColor: "#177dff",
-            fillColor: "rgba(23, 125, 255, 0.14)",
-        });
-
-        $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-            type: "line",
-            height: "70",
-            width: "100%",
-            lineWidth: "2",
-            lineColor: "#f3545d",
-            fillColor: "rgba(243, 84, 93, .14)",
-        });
-
-        $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-            type: "line",
-            height: "70",
-            width: "100%",
-            lineWidth: "2",
-            lineColor: "#ffa534",
-            fillColor: "rgba(255, 165, 52, .14)",
-        });
-    </script>
 </body>
 
 </html>
