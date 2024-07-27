@@ -66,49 +66,23 @@
             <div class="sidebar-wrapper scrollbar scrollbar-inner">
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
-                        <li class="nav-item active">
-                            <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                        <li class="nav-item active" class="collapsed">
+                            <a href="{{ route('dashboard') }}">
                                 <i class="fas fa-home"></i>
                                 <p>Dashboard</p>
-                                <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="dashboard">
-                                <ul class="nav nav-collapse">
-                                    <li>
-                                        <a href="{{ route('dashboard') }}">
-                                            <span class="sub-item">Index</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
                         <li class="nav-section">
                             <span class="sidebar-mini-icon">
                                 <i class="fa fa-ellipsis-h"></i>
                             </span>
-                            <h4 class="text-section">Componts</h4>
+                            <h4 class="text-section">Produk</h4>
                         </li>
-                        <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#base">
-                                <i class="fas fa-layer-group"></i>
-                                <p>Produk</p>
-                                <span class="caret"></span>
+                        <div class="nav-item">
+                            <a href="{{ route('sepatuSendal.index') }}"><i class="fas fa-layer-group"></i>
+                                <p>Sepatu & Sendal</p>
                             </a>
-                            <div class="collapse" id="base">
-                                <ul class="nav nav-collapse">
-                                    <li>
-                                        <a href="{{ route('produk.index') }}">
-                                            <span class="sub-item">Index</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components/buttons.html">
-                                            <span class="sub-item">Buttons</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                        </div>
                         {{-- <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#sidebarLayouts">
                                 <i class="fas fa-th-list"></i>
@@ -343,16 +317,11 @@
 
             <div class="container">
                 <div class="page-inner">
+
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
-                        <div>
-                            <h3 class="fw-bold mb-3">@yield('title-heading')</h3>
-                            <h6 class="op-7 mb-2">Free Bootstrap 5 Admin Dashboard</h6>
-                        </div>
-                        <div class="ms-md-auto py-2 py-md-0">
-                            <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
-                            <a href="#" class="btn btn-primary btn-round">Add Customer</a>
-                        </div>
+                        @yield('title-content')
                     </div>
+
                     @yield('content')
                 </div>
             </div>
