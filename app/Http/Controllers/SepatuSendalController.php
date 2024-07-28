@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProdukModel;
+use App\Models\SepatuSendal;
 use Illuminate\Http\Request;
 
 class SepatuSendalController extends Controller
@@ -19,7 +21,10 @@ class SepatuSendalController extends Controller
      */
     public function create()
     {
-        return view('SepatuDanSendal.create');
+        $models = ProdukModel::get();
+        return view('SepatuDanSendal.create', [
+            'models' => $models
+        ]);
     }
 
     /**
