@@ -39,6 +39,8 @@ class SepatuSendalController extends Controller
         $produk = new SepatuSendal;
         $produk->models_id = $request->produk_model;
         $produk->save();
+
+        return redirect()->route('sepatuSendal.index');
     }
 
     /**
