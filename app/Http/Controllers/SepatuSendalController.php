@@ -32,7 +32,13 @@ class SepatuSendalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'produk_model' => 'required',
+        ]);
+
+        $produk = new SepatuSendal;
+        $produk->models_id = $request->produk_model;
+        $produk->save();
     }
 
     /**
