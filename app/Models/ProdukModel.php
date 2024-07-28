@@ -9,6 +9,10 @@ class ProdukModel extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nama',
+    ];
+
     public function sepatuSendal(){
         return $this->hasMany(SepatuSendal::class);
     }
