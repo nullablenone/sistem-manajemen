@@ -12,4 +12,8 @@ class SepatuSendal extends Model
     public function model(){
         return $this->belongsTo(ProdukModel::class);
     }
+
+    public function ukuran(){
+        return $this->belongsTo(Ukuran::class);
+    }
 }
