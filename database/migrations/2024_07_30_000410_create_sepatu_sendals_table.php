@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sepatu_sendals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('models_id')->constrained('produk_models')->onDelete('cascade');
+            $table->foreignId('model_id')->constrained('produk_models')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('sepatu_sendals');
     }
 };
