@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProdukModel;
+use App\Models\Ukuran;
 use App\Models\SepatuSendal;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,9 @@ class SepatuSendalController extends Controller
      */
     public function index()
     {
-        return view('SepatuDanSendal.index');
+        $produks = SepatuSendal::with('model', 'ukuran')->get();
+
+        return view('SepatuDanSendal.index', compact('produks'));
     }
 
     /**
@@ -22,9 +25,8 @@ class SepatuSendalController extends Controller
     public function create()
     {
         $models = ProdukModel::get();
-        return view('SepatuDanSendal.create', [
-            'models' => $models
-        ]);
+        $ukurans = Ukuran::get();
+        return view('SepatuDanSendal.create', compact('models', 'ukurans'));
     }
 
     /**
@@ -33,14 +35,17 @@ class SepatuSendalController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'produk_model' => 'required',
+            'produk_model' => 'required|exists:produk_models,id',
+            'ukuran' => 'required|numeric',
         ]);
 
         $produk = new SepatuSendal;
-        $produk->models_id = $request->produk_model;
+
+        $produk->model_id = $request->produk_model;
+        $produk->ukuran_id = $request->ukuran;
         $produk->save();
 
-        return redirect()->route('sepatuSendal.index');
+        return redirect()->route('sepatuSendal.index')->with('success', 'Produk berhasil ditambahkan.');
     }
 
     /**
