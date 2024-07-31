@@ -45,7 +45,7 @@
             <div class="sidebar-logo">
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
-                    <a href="{{ route('dashboard') }}" class="logo">
+                    <a href="{{ route('dashboard.index') }}" class="logo">
                         <img src="{{ asset('assets/img/grahateknologi.png') }}" alt="navbar brand" class="navbar-brand"
                             height="32" />
                     </a>
@@ -75,7 +75,7 @@
                             <div class="collapse" id="dashboard">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="{{ route('dashboard') }}">
+                                        <a href="{{ route('dashboard.index') }}">
                                             <span class="sub-item">index</span>
                                         </a>
                                     </li>
