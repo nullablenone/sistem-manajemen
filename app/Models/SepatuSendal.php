@@ -13,7 +13,10 @@ class SepatuSendal extends Model
         return $this->belongsTo(ProdukModel::class);
     }
 
-    public function ukuran(){
-        return $this->belongsTo(Ukuran::class);
+    public function ukuran()
+    {
+        return $this->belongsToMany(Ukuran::class, 'sepatu_ukuran', 'sepatu_id', 'ukuran_id')
+                    ->withPivot('stok');
     }
+
 }

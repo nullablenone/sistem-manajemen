@@ -9,7 +9,9 @@ class Ukuran extends Model
 {
     use HasFactory;
 
-    public function sepatuSendal(){
-        return $this->hasMany(SepatuSendal::class);
+    public function sepatuSendal()
+    {
+        return $this->belongsToMany(SepatuSendal::class, 'sepatu_ukuran', 'ukuran_id', 'sepatu_id')
+                    ->withPivot('stok');
     }
 }
