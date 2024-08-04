@@ -7,14 +7,15 @@
         <h6 class="op-7 mb-2">Manajemen Stok Sepatu Dan Sendal Gayata</h6>
     </div>
     <div class="ms-md-auto py-2 py-md-0">
-        {{-- <a href="#" class="btn btn-label-info btn-round me-2">Manage</a> --}}
-        <a href="{{ route('sepatuSendal.create') }}" class="btn btn-primary btn-round">Tambah Produk</a>
+        <a href="{{ route('sepatuSendal.create') }}" class="btn btn-secondary"><span class="btn-label">
+                <i class="fa fa-plus"></i>
+            </span>
+            Tambah</a>
     </div>
 @endsection
 
 
 @section('content')
-
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -29,23 +30,33 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">Ukuran</th>
-                        {{-- <th scope="col">Ukuran 39</th>
-                        <th scope="col">Ukuran 38</th>
-                        <th scope="col">Ukuran 37</th>
-                        <th scope="col">Ukuran 36</th> --}}
-                        <th scope="col">Total Stok</th>
+                        <th>ID</th>
+                        <th>Model</th>
+                        <th>Ukuran</th>
+                        <th>Stok</th>
                     </tr>
                 </thead>
                 <tbody>
-
-                    @foreach ($produks as $index => $produk)
+                    @foreach ($sepatuSendals as $item)
                         <tr>
-                            <td>{{ $index += 1 }}</td>
-                            <td>{{ $produk->model->nama }}</td>
-                            <td>{{ $produk->ukuran->ukuran }}</td>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->model->nama }}</td>
+                            <td>
+                                {{ $item->ukuran }}
+                                {{-- @foreach ($item->ukuran as $ukuran)
+                                    {{ $ukuran->ukuran }}@if (!$loop->last)
+                                        ,
+                                    @endif
+                                @endforeach --}}
+                            </td>
+                            <td>
+                                {{-- {{ $item->pivot->stok }} --}}
+                                {{-- @foreach ($item->ukuran as $ukuran)
+                                    {{ $ukuran->pivot->stok }}@if (!$loop->last)
+                                        ,
+                                    @endif
+                                @endforeach --}}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

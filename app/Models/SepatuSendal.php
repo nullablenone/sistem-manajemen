@@ -9,14 +9,13 @@ class SepatuSendal extends Model
 {
     use HasFactory;
 
-    public function model(){
+    public function model()
+    {
         return $this->belongsTo(ProdukModel::class);
     }
-
     public function ukuran()
     {
-        return $this->belongsToMany(Ukuran::class, 'sepatu_ukuran', 'sepatu_id', 'ukuran_id')
-                    ->withPivot('stok');
+        return $this->belongsToMany(Ukuran::class, 'sepatu_sendal_ukuran', 'sepatusendal_id', 'ukuran_id')
+            ->withPivot('stok');
     }
-
 }

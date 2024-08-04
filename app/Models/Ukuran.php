@@ -11,7 +11,7 @@ class Ukuran extends Model
 
     public function sepatuSendal()
     {
-        return $this->belongsToMany(SepatuSendal::class, 'sepatu_ukuran', 'ukuran_id', 'sepatu_id')
+        return $this->belongsToMany(SepatuSendal::class, 'sepatu_sendal_ukuran', 'ukuran_id', 'sepatusendal_id')
                     ->withPivot('stok');
     }
 }

@@ -14,9 +14,25 @@ class SepatuSendalController extends Controller
      */
     public function index()
     {
-        $produks = SepatuSendal::with('model', 'ukuran')->get();
+        // Query untuk mengambil semua data sepatu dengan model dan ukuran
+        $sepatuSendals = SepatuSendal::with(['model', 'ukuran'])
+            ->join('produk_models', 'sepatu_sendals.model_id', '=', 'produk_models.id')
+            ->join('sepatu_sendal_ukuran', 'sepatu_sendals.id', '=', 'sepatu_sendal_ukuran.sepatusendal_id')
+            ->join('ukurans', 'sepatu_sendal_ukuran.ukuran_id', '=', 'ukurans.id')
+            ->select('sepatu_sendals.*', 'produk_models.nama as model_nama', 'ukurans.ukuran', 'sepatu_sendal_ukuran.stok')
+            ->orderBy('produk_models.nama', 'asc')
+            ->orderBy('ukurans.ukuran', 'asc')
+            ->get();
 
-        return view('SepatuDanSendal.index', compact('produks'));
+        // Tambahkan fitur pencarian
+        // if ($request->filled('search')) {
+        //     $sepatu->where('model_produk.nama_model', 'like', '%' . $request->search . '%')
+        //         ->orWhere('ukuran.ukuran', 'like', '%' . $request->search . '%');
+        // }
+
+
+        // Kirim data sepatu ke view
+        return view('SepatuDanSendal.index', compact('sepatuSendals'));
     }
 
     /**
@@ -34,19 +50,30 @@ class SepatuSendalController extends Controller
      */
     public function store(Request $request)
     {
+        // Validasi input
         $validated = $request->validate([
             'produk_model' => 'required|exists:produk_models,id',
-            'ukuran' => 'required|numeric',
+            'ukuran' => 'required|array',
+            'ukuran.*' => 'exists:ukurans,id',
+            'stok' => 'required|array',
+            'stok.*' => 'integer|min:0'
         ]);
 
-        $produk = new SepatuSendal;
+        // Instansiasi objek Sepatu
+        $sepatu = new SepatuSendal;
+        $sepatu->model_id = $request->input('produk_model');
 
-        $produk->model_id = $request->produk_model;
-        $produk->ukuran_id = $request->ukuran;
-        $produk->save();
+        // Simpan data sepatu
+        $sepatu->save();
 
-        return redirect()->route('sepatuSendal.index')->with('success', 'Produk berhasil ditambahkan.');
+        // Relasi dengan pivot table
+        foreach ($validated['ukuran'] as $index => $ukuranId) {
+            $sepatu->ukuran()->attach($ukuranId, ['stok' => $validated['stok'][$index]]);
+        }
+
+        return redirect()->route('sepatuSendal.index')->with('success', 'Sepatu berhasil ditambahkan.');
     }
+
 
     /**
      * Display the specified resource.
