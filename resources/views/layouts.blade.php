@@ -222,38 +222,8 @@
     <script src="{{ asset('assets/js/setting-demo.js') }}"></script>
     <script src="{{ asset('assets/js/demo.js') }}"></script>
 
-
-    <script>
-        //== Class definition
-        var SweetAlert2Demo = (function() {
-            //== Demos
-            var initDemos = function() {
-
-                $("#alert_demo_3_3").click(function(e) {
-                    swal("Good job!", "Berhasil di Tambahkan", {
-                        icon: "success",
-                        buttons: {
-                            confirm: {
-                                className: "btn btn-success",
-                            },
-                        },
-                    });
-                });
-            };
-
-            return {
-                //== Init
-                init: function() {
-                    initDemos();
-                },
-            };
-        })();
-
-        //== Class Initialization
-        jQuery(document).ready(function() {
-            SweetAlert2Demo.init();
-        });
-    </script>
+    {{-- khusus buat js --}}
+    @stack('scripts')
 </body>
 
 </html>
