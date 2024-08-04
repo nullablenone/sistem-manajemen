@@ -66,36 +66,33 @@
             <div class="sidebar-wrapper scrollbar scrollbar-inner">
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
-                        <li class="nav-item active">
-                            <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                        <!-- Dashboard -->
+                        <li class="nav-item {{ Request::routeIs('dashboard.index') ? 'active' : '' }}">
+                            <a href="{{ route('dashboard.index') }}">
                                 <i class="fas fa-home"></i>
                                 <p>Dashboard</p>
-                                <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="dashboard">
-                                <ul class="nav nav-collapse">
-                                    <li>
-                                        <a href="{{ route('dashboard.index') }}">
-                                            <span class="sub-item">index</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#base">
+
+                        <!-- Produk -->
+                        <li class="nav-item {{ Request::routeIs('sepatuSendal.*') ? 'active' : '' }}">
+                            <a data-bs-toggle="collapse" href="#base"
+                                class="{{ Request::routeIs('sepatuSendal.*') ? '' : 'collapsed' }}"
+                                aria-expanded="{{ Request::routeIs('sepatuSendal.*') ? 'true' : 'false' }}">
                                 <i class="fas fa-layer-group"></i>
                                 <p>Produk</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="base">
+                            <div class="collapse {{ Request::routeIs('sepatuSendal.*') ? 'show' : '' }}"
+                                id="base">
                                 <ul class="nav nav-collapse">
-                                    <li>
+                                    <li class="{{ Request::routeIs('sepatuSendal.index') ? 'active' : '' }}">
                                         <a href="{{ route('sepatuSendal.index') }}">
                                             <span class="sub-item">Sepatu & Sendal</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    <!-- Menambahkan bagian Tas jika diperlukan -->
+                                    <li class="{{ Request::is('components/buttons.html') ? 'active' : '' }}">
                                         <a href="components/buttons.html">
                                             <span class="sub-item">Tas</span>
                                         </a>
@@ -137,8 +134,8 @@
                     <div class="container-fluid">
                         <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     <!-- Menampilkan nama user -->
                                     {{ Auth::user()->name }}
                                 </a>
@@ -224,6 +221,39 @@
     <!-- Kaiadmin DEMO methods, don't include it in your project! -->
     <script src="{{ asset('assets/js/setting-demo.js') }}"></script>
     <script src="{{ asset('assets/js/demo.js') }}"></script>
+
+
+    <script>
+        //== Class definition
+        var SweetAlert2Demo = (function() {
+            //== Demos
+            var initDemos = function() {
+
+                $("#alert_demo_3_3").click(function(e) {
+                    swal("Good job!", "Berhasil di Tambahkan", {
+                        icon: "success",
+                        buttons: {
+                            confirm: {
+                                className: "btn btn-success",
+                            },
+                        },
+                    });
+                });
+            };
+
+            return {
+                //== Init
+                init: function() {
+                    initDemos();
+                },
+            };
+        })();
+
+        //== Class Initialization
+        jQuery(document).ready(function() {
+            SweetAlert2Demo.init();
+        });
+    </script>
 </body>
 
 </html>
