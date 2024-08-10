@@ -12,27 +12,13 @@ class SepatuSendalController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        // Query untuk mengambil semua data sepatu dengan model dan ukuran
-        $sepatuSendals = SepatuSendal::with(['model', 'ukuran'])
-            ->join('produk_models', 'sepatu_sendals.model_id', '=', 'produk_models.id')
-            ->join('sepatu_sendal_ukuran', 'sepatu_sendals.id', '=', 'sepatu_sendal_ukuran.sepatusendal_id')
-            ->join('ukurans', 'sepatu_sendal_ukuran.ukuran_id', '=', 'ukurans.id')
-            ->select('sepatu_sendals.*', 'produk_models.nama as model_nama', 'ukurans.ukuran', 'sepatu_sendal_ukuran.stok')
-            ->orderBy('produk_models.nama', 'asc')
-            ->orderBy('ukurans.ukuran', 'asc')
-            ->get();
+        $sepatuSendals = SepatuSendal::with('model', 'ukuran')->get();
+        $ukurans = Ukuran::all();
 
-        // Tambahkan fitur pencarian
-        // if ($request->filled('search')) {
-        //     $sepatu->where('model_produk.nama_model', 'like', '%' . $request->search . '%')
-        //         ->orWhere('ukuran.ukuran', 'like', '%' . $request->search . '%');
-        // }
-
-
-        // Kirim data sepatu ke view
-        return view('SepatuDanSendal.index', compact('sepatuSendals'));
+        return view('SepatuDanSendal.index', compact('sepatuSendals', 'ukurans'));
     }
 
     /**
@@ -67,11 +53,11 @@ class SepatuSendalController extends Controller
         $sepatu->save();
 
         // Relasi dengan pivot table
-        foreach ($validated['ukuran'] as $index => $ukuranId) {
-            $sepatu->ukuran()->attach($ukuranId, ['stok' => $validated['stok'][$index]]);
+        foreach ($request->input('ukuran') as $index => $ukuranId) {
+            $sepatu->ukuran()->attach($ukuranId, ['stok' => $request->input('stok')[$index]]);
         }
 
-        return redirect()->route('sepatuSendal.index')->with('success', 'Sepatu berhasil ditambahkan.');
+        return redirect()->route('sepatuSendal.index')->with('success', 'Data berhasil ditambahkan.');
     }
 
 
@@ -88,7 +74,10 @@ class SepatuSendalController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $sepatuSendal = SepatuSendal::with('model', 'ukuran')->find($id);
+        $models = ProdukModel::get();
+        $ukurans = Ukuran::get();
+        return view('SepatuDanSendal.edit', compact('sepatuSendal', 'models', 'ukurans'));
     }
 
     /**
@@ -96,7 +85,27 @@ class SepatuSendalController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validasi input
+        $validated = $request->validate([
+            'produk_model' => 'required|exists:produk_models,id',
+            'ukuran' => 'required|array',
+            'ukuran.*' => 'exists:ukurans,id',
+            'stok' => 'required|array',
+            'stok.*' => 'integer|min:0'
+        ]);
+
+        $sepatu = SepatuSendal::with('model', 'ukuran')->find($id);
+        // Instansiasi objek yang di edit
+        $sepatu->model_id = $request->input('produk_model');
+        // Simpan data sepatu dan Sendal
+        $sepatu->save();
+
+        // Update ukuran dan stok pada pivot table
+        foreach ($request->input('ukuran') as $index => $ukuranId) {
+            $sepatu->ukuran()->updateExistingPivot($ukuranId, ['stok' => $request->input('stok')[$index]]);
+        }
+
+        return redirect()->route('sepatuSendal.index')->with('success', 'Data berhasil diperbarui : )');
     }
 
     /**

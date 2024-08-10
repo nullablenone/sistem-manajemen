@@ -14,7 +14,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('sepatu-sendal', [SepatuSendalController::class, 'index'])->name('sepatuSendal.index');
     Route::get('sepatu-sendal/create', [SepatuSendalController::class, 'create'])->name('sepatuSendal.create');
     Route::post('sepatu-sendal', [SepatuSendalController::class, 'store'])->name('sepatuSendal.store');
-
+    Route::get('sepatu-sendal/{id}/edit', [SepatuSendalController::class, 'edit'])->name('sepatuSendal.edit');
+    Route::put('sepatu-sendal/{id}', [SepatuSendalController::class, 'update'])->name('sepatuSendal.update');
 });
 
 Route::middleware('auth')->group(function () {
