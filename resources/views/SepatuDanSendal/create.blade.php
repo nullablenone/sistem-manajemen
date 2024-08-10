@@ -16,37 +16,27 @@
                             <div class="col-md">
                                 <div class="col-md-6 col-lg-4">
                                     <div class="form-group form-group-default">
+
+                                        {{-- form input model --}}
                                         <label>Model</label>
-                                        <select class="form-select @error('produk_model') is-invalid @enderror"
-                                            id="formGroupDefaultSelect" name="produk_model" required>
+                                        <select class="form-select" id="formGroupDefaultSelect" name="produk_model"
+                                            required>
                                             <option value="">Pilih Model</option>
                                             @foreach ($models as $model)
-                                                <option value="{{ $model->id }}"
-                                                    {{ old('produk_model') == $model->id ? 'selected' : '' }}>
+                                                <option value="{{ $model->id }}">
                                                     {{ $model->nama }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                        @error('produk_model')
-                                            <span class="invalid-feedback d-block">{{ $message }}</span>
-                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Ukuran dan Stok</label>
-                                    <div class="invalid-feedback d-block">
-                                        @error('ukuran')
-                                            <span>{{ $message }}</span>
-                                        @enderror
-                                    </div>
                                     @foreach ($ukurans as $ukuran)
                                         <div class="form-check mb-3">
-                                            <input
-                                                class="form-check-input ukuran-checkbox @error('ukuran') is-invalid @enderror"
-                                                type="checkbox" name="ukuran[]" value="{{ $ukuran->id }}"
-                                                id="ukuran-{{ $ukuran->id }}"
-                                                {{ is_array(old('ukuran')) && in_array($ukuran->id, old('ukuran')) ? 'checked' : '' }}>
+                                            <input class="form-check-input ukuran-checkbox" type="hidden" name="ukuran[]"
+                                                value="{{ $ukuran->id }}" id="ukuran-{{ $ukuran->id }}">
 
                                             <label class="form-check-label" for="ukuran-{{ $ukuran->id }}">
                                                 Ukuran {{ $ukuran->ukuran }}
@@ -65,7 +55,7 @@
                         <button type="submit" class="btn btn-success" id="alert_demo_3_3">
                             Submit
                         </button>
-                        <button class="btn btn-danger" type="button">Cancel</button>
+                        <button class="btn btn-danger" type="button" onclick="window.location.href='{{ route('sepatuSendal.index') }}';">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -76,7 +66,7 @@
         <script>
             //== Class definition
             var SweetAlert2Demo = (function() {
-                //== Demos
+                //== Demos          
                 var initDemos = function() {
 
                     $("#alert_demo_3_3").click(function(e) {
@@ -84,7 +74,6 @@
                         let formValid = true;
 
                         const modelSelect = document.querySelector("select[name='produk_model']");
-                        const checkboxes = document.querySelectorAll('.ukuran-checkbox');
                         const stokInputs = document.querySelectorAll('.stok-input');
 
                         // Cek jika model dipilih
@@ -99,27 +88,6 @@
                                 },
                             });
                             return; // Keluar dari fungsi jika model belum dipilih
-                        }
-
-                        // Cek jika semua ukuran dicentang
-                        let allChecked = true;
-                        checkboxes.forEach(checkbox => {
-                            if (!checkbox.checked) {
-                                allChecked = false;
-                            }
-                        });
-
-                        if (!allChecked) {
-                            formValid = false;
-                            swal("Error!", "Semua ukuran harus dicentang.", {
-                                icon: "error",
-                                buttons: {
-                                    confirm: {
-                                        className: "btn btn-danger",
-                                    },
-                                },
-                            });
-                            return; // Keluar dari fungsi jika semua ukuran belum dicentang
                         }
 
                         // Cek jika semua stok diisi

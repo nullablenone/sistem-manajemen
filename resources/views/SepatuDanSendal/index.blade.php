@@ -28,39 +28,52 @@
         </div>
         <div class="card-body">
             <table class="table table-bordered">
+
+                {{-- head table --}}
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Model</th>
-                        <th>Ukuran</th>
-                        <th>Stok</th>
+                        <th rowspan="2" class="text-center align-middle">NO</th>
+                        <th rowspan="2" class="text-center align-middle">Model</th>
+                        <th colspan="{{ count($ukurans) }}" class="text-center">Ukuran</th>
+                        <th rowspan="2" class="text-center align-middle">Action</th>
+                    </tr>
+                    <tr>
+                        @foreach ($ukurans as $ukuran)
+                            <th class="text-center">{{ $ukuran->ukuran }}</th>
+                        @endforeach
                     </tr>
                 </thead>
+
+                {{-- body table --}}
                 <tbody>
-                    @foreach ($sepatuSendals as $item)
+                    @foreach ($sepatuSendals as $index => $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $item->model->nama }}</td>
-                            <td>
-                                {{ $item->ukuran }}
-                                {{-- @foreach ($item->ukuran as $ukuran)
-                                    {{ $ukuran->ukuran }}@if (!$loop->last)
-                                        ,
-                                    @endif
-                                @endforeach --}}
-                            </td>
-                            <td>
-                                {{-- {{ $item->pivot->stok }} --}}
-                                {{-- @foreach ($item->ukuran as $ukuran)
-                                    {{ $ukuran->pivot->stok }}@if (!$loop->last)
-                                        ,
-                                    @endif
-                                @endforeach --}}
-                            </td>
+
+                            @foreach ($ukurans as $ukuran)
+                                <td class="text-center">
+                                    {{ $item->ukuran->where('id', $ukuran->id)->first()->pivot->stok ?? 0 }}
+                                </td>
+                            @endforeach
+                            <td><a href="{{ route('sepatuSendal.edit', $item->id) }}">Manage</a></td>
                         </tr>
                     @endforeach
                 </tbody>
+
+                {{-- footer table --}}
+                <tfoot>
+                    <tr>
+                        <th colspan="2" class="text-center">TOTAL</th>
+                        @foreach ($ukurans as $ukuran)
+                            <th class="text-center">
+                                {{ $sepatuSendals->sum(fn($item) => $item->ukuran->where('id', $ukuran->id)->first()->pivot->stok ?? 0) }}
+                            </th>
+                        @endforeach
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
+
 @endsection
