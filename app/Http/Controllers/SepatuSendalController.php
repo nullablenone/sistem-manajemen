@@ -18,7 +18,7 @@ class SepatuSendalController extends Controller
         $sepatuSendals = SepatuSendal::with('model', 'ukuran')->get();
         $ukurans = Ukuran::all();
 
-        return view('SepatuDanSendal.index', compact('sepatuSendals', 'ukurans'));
+        return view('Produk.SepatuDanSendal.index', compact('sepatuSendals', 'ukurans'));
     }
 
     /**
@@ -28,7 +28,7 @@ class SepatuSendalController extends Controller
     {
         $models = ProdukModel::get();
         $ukurans = Ukuran::get();
-        return view('SepatuDanSendal.create', compact('models', 'ukurans'));
+        return view('Produk.SepatuDanSendal.create', compact('models', 'ukurans'));
     }
 
     /**
@@ -77,7 +77,7 @@ class SepatuSendalController extends Controller
         $sepatuSendal = SepatuSendal::with('model', 'ukuran')->find($id);
         $models = ProdukModel::get();
         $ukurans = Ukuran::get();
-        return view('SepatuDanSendal.edit', compact('sepatuSendal', 'models', 'ukurans'));
+        return view('Produk.SepatuDanSendal.edit', compact('sepatuSendal', 'models', 'ukurans'));
     }
 
     /**
