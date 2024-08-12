@@ -100,6 +100,29 @@
                                 </ul>
                             </div>
                         </li>
+
+                        <!-- Model Produk -->
+                        <li class="nav-item {{ Request::routeIs('modelProduk.*') ? 'active' : '' }}">
+                            <a data-bs-toggle="collapse" href="#modelProdukCollapse"
+                                class="{{ Request::routeIs('modelProduk.*') ? '' : 'collapsed' }}"
+                                aria-expanded="{{ Request::routeIs('modelProduk.*') ? 'true' : 'false' }}">
+                                <i class="fab fa-flickr"></i>
+                                <p>Model Produk</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse {{ Request::routeIs('modelProduk.*') ? 'show' : '' }}"
+                                id="modelProdukCollapse">
+                                <ul class="nav nav-collapse">
+                                    <li class="{{ Request::routeIs('modelProduk.index') ? 'active' : '' }}">
+                                        <a href="{{ route('modelProduk.index') }}">
+                                            <span class="sub-item">Sepatu & Sendal</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+
                     </ul>
                 </div>
             </div>

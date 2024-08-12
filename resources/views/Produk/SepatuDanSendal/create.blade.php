@@ -53,9 +53,10 @@
                     </div>
                     <div class="card-action">
                         <button type="submit" class="btn btn-success" id="alert_demo_3_3">
-                            Submit
+                            Simpan
                         </button>
-                        <button class="btn btn-danger" type="button" onclick="window.location.href='{{ route('sepatuSendal.index') }}';">Cancel</button>
+                        <button class="btn btn-danger" type="button"
+                            onclick="window.location.href='{{ route('sepatuSendal.index') }}';">Batal</button>
                     </div>
                 </div>
             </div>

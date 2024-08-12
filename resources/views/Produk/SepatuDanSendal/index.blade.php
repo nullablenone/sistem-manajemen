@@ -3,8 +3,8 @@
 
 @section('title-content')
     <div>
-        <h3 class="fw-bold mb-3">Sepatu & Sendal</h3>
-        <h6 class="op-7 mb-2">Manajemen Stok Sepatu Dan Sendal Gayata</h6>
+        <h3 class="fw-bold mb-3">Produk</h3>
+        <h6 class="op-7 mb-2">Manajemen Produk Sepatu Dan Sendal Gayata</h6>
     </div>
     <div class="ms-md-auto py-2 py-md-0">
         <a href="{{ route('sepatuSendal.create') }}" class="btn btn-secondary"><span class="btn-label">
