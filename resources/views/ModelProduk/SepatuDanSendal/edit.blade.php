@@ -55,7 +55,7 @@
 
                         // Jika form valid, tampilkan alert sukses dan submit form
                         if (formValid) {
-                            swal("Good job!", "Berhasil ditambahkan", {
+                            swal("Good job!", "Berhasil diupdate", {
                                 icon: "success",
                                 buttons: {
                                     confirm: {
