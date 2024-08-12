@@ -121,8 +121,28 @@
                                 </ul>
                             </div>
                         </li>
-
-
+                        
+                        <!-- Ukuran Produk -->
+                        <li class="nav-item {{ Request::routeIs('ukuranProduk.*') ? 'active' : '' }}">
+                            <a data-bs-toggle="collapse" href="#ukuranProdukCollapse"
+                                class="{{ Request::routeIs('ukuranProduk.*') ? '' : 'collapsed' }}"
+                                aria-expanded="{{ Request::routeIs('ukuranProduk.*') ? 'true' : 'false' }}">
+                                <i class="fa fa-bars"></i>
+                                <p>Ukuran Produk</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse {{ Request::routeIs('ukuranProduk.*') ? 'show' : '' }}"
+                                id="ukuranProdukCollapse">
+                                <ul class="nav nav-collapse">
+                                    <li class="{{ Request::routeIs('ukuranProduk.index') ? 'active' : '' }}">
+                                        <a href="{{ route('ukuranProduk.index') }}">
+                                            <span class="sub-item">Sepatu & Sendal</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        
                     </ul>
                 </div>
             </div>

@@ -1,28 +1,26 @@
 @extends('layouts')
 @section('content')
-    <form action="{{ route('modelProduk.update', $model->id) }}" method="POST" id="productForm">
+    <form action="{{ route('ukuranProduk.store') }}" method="POST" id="productForm">
         @csrf
-        @method('PUT')
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Edit Model Produk</div>
+                        <div class="card-title">Tambah Ukuran</div>
                     </div>
                     <div class="card-body">
                         <div class="form-group form-group-default">
-                            <label>Nama Model</label>
-                            <input id="nama_model" name="nama" type="text" class="form-control" placeholder="......"
-                                value="{{ $model->nama }}">
+                            <label>Ukuran Baru</label>
+                            <input id="ukuran" name="ukuran" type="number" class="form-control" placeholder="......">
                         </div>
                     </div>
 
                     <div class="card-action">
                         <button type="submit" class="btn btn-success" id="alert_demo_3_3">
-                            Submit
+                            Simpan
                         </button>
                         <button class="btn btn-danger" type="button"
-                            onclick="window.location.href='{{ route('modelProduk.index') }}';">Cancel</button>
+                            onclick="window.location.href='{{ route('ukuranProduk.index') }}';">Batal</button>
                     </div>
                 </div>
             </div>
@@ -38,12 +36,12 @@
                         e.preventDefault(); // Mencegah form submit otomatis
                         let formValid = true;
 
-                        const namaModelInput = document.getElementById("nama_model");
+                        const namaModelInput = document.getElementById("ukuran");
 
                         // Cek jika nama model diisi
                         if (namaModelInput.value.trim() === '') {
                             formValid = false;
-                            swal("Error!", "Silahkan isi nama model.", {
+                            swal("Error!", "Silahkan isi ukuran baru.", {
                                 icon: "error",
                                 buttons: {
                                     confirm: {
@@ -56,7 +54,7 @@
 
                         // Jika form valid, tampilkan alert sukses dan submit form
                         if (formValid) {
-                            swal("Good job!", "Berhasil diupdate", {
+                            swal("Good job!", "Berhasil ditambahkan", {
                                 icon: "success",
                                 buttons: {
                                     confirm: {

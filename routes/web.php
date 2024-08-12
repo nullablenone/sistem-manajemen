@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ModelProdukController;
 use App\Http\Controllers\SepatuSendalController;
+use App\Http\Controllers\UkuranProdukController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,6 +29,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('model-produk/{id}/edit', [ModelProdukController::class, 'edit'])->name('modelProduk.edit');
     Route::put('model-produk/{id}', [ModelProdukController::class, 'update'])->name('modelProduk.update');
     Route::delete('model-produk/{id}', [ModelProdukController::class, 'destroy'])->name('modelProduk.destroy');
+    
+    // ukuran produk
+    Route::get('ukuran-produk', [UkuranProdukController::class, 'index'])->name('ukuranProduk.index');
+    Route::get('ukuran-produk/create', [UkuranProdukController::class, 'create'])->name('ukuranProduk.create');
+    Route::post('ukuran-produk', [UkuranProdukController::class, 'store'])->name('ukuranProduk.store');
+    Route::get('ukuran-produk/{id}/edit', [UkuranProdukController::class, 'edit'])->name('ukuranProduk.edit');
+    Route::put('ukuran-produk/{id}', [UkuranProdukController::class, 'update'])->name('ukuranProduk.update');
+    Route::delete('ukuran-produk/{id}', [UkuranProdukController::class, 'destroy'])->name('ukuranProduk.destroy');
 });
 
 Route::middleware('auth')->group(function () {
