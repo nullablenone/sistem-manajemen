@@ -110,7 +110,7 @@
                                 <p>Model Produk</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse {{ Request::routeIs('modelProduk.*') ? 'show' : '' }}"
+                            <div class="collapse {{ Request::routeIs('modelProduk.*') || Request::routeIs('modelTas.*') ? 'show' : '' }}"
                                 id="modelProdukCollapse">
                                 <ul class="nav nav-collapse">
                                     <li class="{{ Request::routeIs('modelProduk.index') ? 'active' : '' }}">
@@ -118,10 +118,15 @@
                                             <span class="sub-item">Sepatu & Sendal</span>
                                         </a>
                                     </li>
+                                    <li class="{{ Request::routeIs('modelTas.index') ? 'active' : '' }}">
+                                        <a href="{{ route('modelTas.index') }}">
+                                            <span class="sub-item">Tas</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
-                        
+
                         <!-- Ukuran Produk -->
                         <li class="nav-item {{ Request::routeIs('ukuranProduk.*') ? 'active' : '' }}">
                             <a data-bs-toggle="collapse" href="#ukuranProdukCollapse"
@@ -142,7 +147,7 @@
                                 </ul>
                             </div>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -177,8 +182,8 @@
                     <div class="container-fluid">
                         <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <!-- Menampilkan nama user -->
                                     {{ Auth::user()->name }}
                                 </a>
