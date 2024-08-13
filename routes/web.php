@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ModelTasController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ModelProdukController;
 use App\Http\Controllers\SepatuSendalController;
@@ -23,13 +24,22 @@ Route::middleware(['auth'])->group(function () {
     Route::put('sepatu-sendal/{id}', [SepatuSendalController::class, 'update'])->name('sepatuSendal.update');
 
     // model produk
+    // route sepatu dan sendal
     Route::get('model-produk', [ModelProdukController::class, 'index'])->name('modelProduk.index');
     Route::get('model-produk/create', [ModelProdukController::class, 'create'])->name('modelProduk.create');
     Route::post('model-produk', [ModelProdukController::class, 'store'])->name('modelProduk.store');
     Route::get('model-produk/{id}/edit', [ModelProdukController::class, 'edit'])->name('modelProduk.edit');
     Route::put('model-produk/{id}', [ModelProdukController::class, 'update'])->name('modelProduk.update');
     Route::delete('model-produk/{id}', [ModelProdukController::class, 'destroy'])->name('modelProduk.destroy');
-    
+
+    // route tas
+    Route::get('model-tas', [ModelTasController::class, 'index'])->name('modelTas.index');
+    Route::get('model-tas/create', [ModelTasController::class, 'create'])->name('modelTas.create');
+    Route::post('model-tas', [ModelTasController::class, 'store'])->name('modelTas.store');
+    Route::get('model-tas/{id}/edit', [ModelTasController::class, 'edit'])->name('modelTas.edit');
+    Route::put('model-tas/{id}', [ModelTasController::class, 'update'])->name('modelTas.update');
+    Route::delete('model-tas/{id}', [ModelTasController::class, 'destroy'])->name('modelTas.destroy');
+
     // ukuran produk
     Route::get('ukuran-produk', [UkuranProdukController::class, 'index'])->name('ukuranProduk.index');
     Route::get('ukuran-produk/create', [UkuranProdukController::class, 'create'])->name('ukuranProduk.create');
