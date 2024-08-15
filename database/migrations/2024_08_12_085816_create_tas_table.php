@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('tas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('model_id')->constrained('model_tas')->onDelete('cascade');
+            $table->integer('stok')->default(0);
             $table->timestamps();
         });
     }
