@@ -56,7 +56,7 @@ class TasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function manage(string $id)
     {
         $tas = Tas::with('model')->find($id);
         $models = ModelTas::get();
@@ -66,7 +66,7 @@ class TasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function updateManage(Request $request, string $id)
     {
         $validated = $request->validate([
             'model' => 'required',

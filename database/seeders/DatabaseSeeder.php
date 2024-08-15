@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             UkuranSeeder::class,
             ProdukModelSeeder::class,
+            ModelTasSeeder::class,
         ]);
 
     }
