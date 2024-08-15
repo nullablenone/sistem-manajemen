@@ -62,7 +62,8 @@
                                     },
                                 },
                             }).then(() => {
-                                document.getElementById('productForm').submit(); // Submit form setelah alert
+                                document.getElementById('productForm')
+                            .submit(); // Submit form setelah alert
                             });
                         }
                     });

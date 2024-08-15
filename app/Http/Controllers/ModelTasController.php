@@ -53,7 +53,7 @@ class ModelTasController extends Controller
      */
     public function edit(string $id)
     {
-        $model = MOdelTas::find($id);
+        $model = ModelTas::find($id);
         return view('ModelProduk.Tas.edit', compact('model'));
     }
 

@@ -8,27 +8,21 @@
                     <div class="card-header">
                         <div class="card-title">Tambah Produk</div>
                     </div>
+
                     <div class="card-body">
-                        <div class="alert alert-warning">
-                            <div class="text-muted">Semua Form Harus di Isi!</div>
-                        </div>
                         <div class="row">
                             <div class="col-md">
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group form-group-default">
+                                <div class="form-group form-group-default">
 
-                                        {{-- form input model --}}
-                                        <label>Model</label>
-                                        <select class="form-select" id="formGroupDefaultSelect" name="produk_model"
-                                            required>
-                                            <option value="">Pilih Model</option>
-                                            @foreach ($models as $model)
-                                                <option value="{{ $model->id }}">
-                                                    {{ $model->nama }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    <label>Model</label>
+                                    <select class="form-select" id="formGroupDefaultSelect" name="produk_model" required>
+                                        <option value="">Pilih Model</option>
+                                        @foreach ($models as $model)
+                                            <option value="{{ $model->id }}">
+                                                {{ $model->nama }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="form-group">

@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ModelProdukController;
 use App\Http\Controllers\SepatuSendalController;
 use App\Http\Controllers\UkuranProdukController;
+use App\Http\Controllers\TasController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,12 +17,23 @@ Route::middleware(['auth'])->group(function () {
     // dashboard
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-    // produk
+
+
+    // produk 
+    // route sepatu dan sendal
     Route::get('sepatu-sendal', [SepatuSendalController::class, 'index'])->name('sepatuSendal.index');
     Route::get('sepatu-sendal/create', [SepatuSendalController::class, 'create'])->name('sepatuSendal.create');
     Route::post('sepatu-sendal', [SepatuSendalController::class, 'store'])->name('sepatuSendal.store');
     Route::get('sepatu-sendal/{id}/edit', [SepatuSendalController::class, 'edit'])->name('sepatuSendal.edit');
     Route::put('sepatu-sendal/{id}', [SepatuSendalController::class, 'update'])->name('sepatuSendal.update');
+
+    // route tas
+    Route::get('tas', [TasController::class, 'index'])->name('tas.index');
+    Route::get('tas/create', [TasController::class, 'create'])->name('tas.create');
+    Route::post('tas', [TasController::class, 'store'])->name('tas.store');
+    Route::get('tas/{id}/edit', [TasController::class, 'edit'])->name('tas.edit');
+    Route::put('tas/{id}', [TasController::class, 'update'])->name('tas.update');
+    
 
     // model produk
     // route sepatu dan sendal
@@ -39,6 +51,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('model-tas/{id}/edit', [ModelTasController::class, 'edit'])->name('modelTas.edit');
     Route::put('model-tas/{id}', [ModelTasController::class, 'update'])->name('modelTas.update');
     Route::delete('model-tas/{id}', [ModelTasController::class, 'destroy'])->name('modelTas.destroy');
+
+
+
 
     // ukuran produk
     Route::get('ukuran-produk', [UkuranProdukController::class, 'index'])->name('ukuranProduk.index');

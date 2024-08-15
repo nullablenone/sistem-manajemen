@@ -35,6 +35,8 @@
                         <th rowspan="2" class="text-center align-middle">NO</th>
                         <th rowspan="2" class="text-center align-middle">Model</th>
                         <th colspan="{{ count($ukurans) }}" class="text-center">Ukuran</th>
+                        <th rowspan="2" class="text-center align-middle">Total Stok</th>
+                        <th rowspan="2" class="text-center align-middle">Sisa</th>
                         <th rowspan="2" class="text-center align-middle">Action</th>
                     </tr>
                     <tr>
@@ -47,15 +49,22 @@
                 {{-- body table --}}
                 <tbody>
                     @foreach ($sepatuSendals as $index => $item)
+                        @php
+                            $totalStok = 0;
+                        @endphp
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $item->model->nama }}</td>
 
                             @foreach ($ukurans as $ukuran)
-                                <td class="text-center">
-                                    {{ $item->ukuran->where('id', $ukuran->id)->first()->pivot->stok ?? 0 }}
-                                </td>
+                                @php
+                                    $stok = $item->ukuran->where('id', $ukuran->id)->first()->pivot->stok ?? 0;
+                                    $totalStok += $stok;
+                                @endphp
+                                <td class="text-center">{{ $stok }}</td>
                             @endforeach
+                            <td class="text-center">{{ $totalStok }}</td>
+                            <td class="text-center">{{ $totalStok }}</td> <!-- sementara diisi total stok -->
                             <td><a href="{{ route('sepatuSendal.edit', $item->id) }}">Manage</a></td>
                         </tr>
                     @endforeach
@@ -70,6 +79,10 @@
                                 {{ $sepatuSendals->sum(fn($item) => $item->ukuran->where('id', $ukuran->id)->first()->pivot->stok ?? 0) }}
                             </th>
                         @endforeach
+                        <th class="text-center">{{ $sepatuSendals->sum(fn($item) => $item->ukuran->sum('pivot.stok')) }}
+                        </th>
+                        <th class="text-center">{{ $sepatuSendals->sum(fn($item) => $item->ukuran->sum('pivot.stok')) }}
+                        </th> <!-- sementara diisi total stok -->
                     </tr>
                 </tfoot>
             </table>

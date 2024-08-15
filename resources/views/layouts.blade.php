@@ -91,9 +91,9 @@
                                             <span class="sub-item">Sepatu & Sendal</span>
                                         </a>
                                     </li>
-                                    <!-- Menambahkan bagian Tas jika diperlukan -->
-                                    <li class="{{ Request::is('components/buttons.html') ? 'active' : '' }}">
-                                        <a href="components/buttons.html">
+
+                                    <li class="{{ Request::is('tas.*') ? 'active' : '' }}">
+                                        <a href="{{ route('tas.index') }}">
                                             <span class="sub-item">Tas</span>
                                         </a>
                                     </li>
