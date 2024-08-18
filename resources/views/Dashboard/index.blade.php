@@ -4,12 +4,13 @@
 @section('title-content')
     @if (session('success'))
         <div class="alert alert-success">
-            {{ session('success') }}
+            <i class="fas fa-check"></i> {{ session('success') }}
+
         </div>
     @endif
 
     <div class="ms-md-auto py-2 py-md-0">
-        <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
+        <a href="#" id="toggleManageSidebar" class="btn btn-label-info btn-round me-2">Manage</a>
         @if (Auth::user()->hasRole('super admin'))
             <a href="{{ route('createAkun') }}" class="btn btn-primary btn-round">Tambah Admin</a>
         @endif
@@ -30,19 +31,40 @@
     </div>
 
     <div class="row">
+        @if (Auth::user()->hasRole('super admin'))
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Admin</p>
+                                    <h4 class="card-title">{{ $admin->count() }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="col-sm-6 col-md-3">
             <div class="card card-stats card-round">
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-icon">
-                            <div class="icon-big text-center icon-primary bubble-shadow-small">
-                                <i class="fas fa-users"></i>
+                            <div class="icon-big text-center icon-warning bubble-shadow-small">
+                                <i class="fas fa-archive"></i>
                             </div>
                         </div>
                         <div class="col col-stats ms-3 ms-sm-0">
                             <div class="numbers">
                                 <p class="card-category">Sepatu Sendal</p>
-                                <h4 class="card-title">1,294</h4>
+                                <h4 class="card-title">{{ $sepatuSendal->count() }}</h4>
                             </div>
                         </div>
                     </div>
@@ -55,13 +77,13 @@
                     <div class="row align-items-center">
                         <div class="col-icon">
                             <div class="icon-big text-center icon-info bubble-shadow-small">
-                                <i class="fas fa-user-check"></i>
+                                <i class="fas fa-archive"></i>
                             </div>
                         </div>
                         <div class="col col-stats ms-3 ms-sm-0">
                             <div class="numbers">
                                 <p class="card-category">Tas</p>
-                                <h4 class="card-title">1303</h4>
+                                <h4 class="card-title">{{ $tas->count() }}</h4>
                             </div>
                         </div>
                     </div>
@@ -80,7 +102,7 @@
                         <div class="col col-stats ms-3 ms-sm-0">
                             <div class="numbers">
                                 <p class="card-category">Model Sepatu</p>
-                                <h4 class="card-title">{{ $sepatuSendal->count() }}</h4>
+                                <h4 class="card-title">{{ $modelSepatu->count() }}</h4>
                             </div>
                         </div>
                     </div>
@@ -93,13 +115,13 @@
                     <div class="row align-items-center">
                         <div class="col-icon">
                             <div class="icon-big text-center icon-secondary bubble-shadow-small">
-                                <i class="far fa-check-circle"></i>
+                                <i class="fas fa-luggage-cart"></i>
                             </div>
                         </div>
                         <div class="col col-stats ms-3 ms-sm-0">
                             <div class="numbers">
                                 <p class="card-category">Model Tas</p>
-                                <h4 class="card-title">576</h4>
+                                <h4 class="card-title">{{ $modelTas->count() }}</h4>
                             </div>
                         </div>
                     </div>

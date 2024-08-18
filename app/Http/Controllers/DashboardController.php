@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tas;
 use App\Models\User;
+use App\Models\ModelTas;
+use App\Models\ProdukModel;
 use App\Models\SepatuSendal;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -17,8 +20,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $admin = User::where('role', 'admin')->get();
         $sepatuSendal = SepatuSendal::get();
-        return view('Dashboard.index', compact('sepatuSendal'));
+        $modelSepatu = ProdukModel::get();
+        $tas = Tas::get();
+        $modelTas = ModelTas::get();
+        return view('Dashboard.index', compact('admin', 'sepatuSendal', 'modelSepatu', 'tas', 'modelTas'));
     }
 
     public function createAkun()
