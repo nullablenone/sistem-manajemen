@@ -17,10 +17,10 @@
 @section('content')
     @if (session('success'))
         <div class="alert alert-success">
-            {{ session('success') }}
+            <i class="fas fa-check"></i> {{ session('success') }}
         </div>
     @endif
-
+    
     <div class="card">
         <div class="card-header">
             <div class="card-head-row">
