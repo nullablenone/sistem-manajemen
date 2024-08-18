@@ -16,8 +16,8 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     // dashboard
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-
-
+    Route::get('dashboard/register', [DashboardController::class, 'createAkun'])->name('createAkun');
+    Route::post('dashboard/', [DashboardController::class, 'storeAkun'])->name('storeAkun');
 
     // produk 
     // route sepatu dan sendal
@@ -31,9 +31,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('tas', [TasController::class, 'index'])->name('tas.index');
     Route::get('tas/create', [TasController::class, 'create'])->name('tas.create');
     Route::post('tas', [TasController::class, 'store'])->name('tas.store');
-    Route::get('tas/{id}/edit', [TasController::class, 'edit'])->name('tas.edit');
-    Route::put('tas/{id}', [TasController::class, 'update'])->name('tas.update');
-    
+    Route::get('tas/{id}/edit', [TasController::class, 'manage'])->name('tas.manage');
+    Route::put('tas/{id}', [TasController::class, 'updateManage'])->name('tas.updateManage');
+
 
     // model produk
     // route sepatu dan sendal
