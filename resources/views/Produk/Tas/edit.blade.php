@@ -1,6 +1,6 @@
 @extends('layouts')
 @section('content')
-    <form id="productForm" action="{{ route('tas.update', $tas->id) }}" method="POST">
+    <form id="productForm" action="{{ route('tas.updateManage', $tas->id) }}" method="POST">
         @method('PUT')
         @csrf
         <div class="row">
@@ -27,7 +27,7 @@
                         <div class="form-group form-group-default">
                             <label>Stok</label>
                             <input id="stok" type="number" name="stok" class="form-control"
-                                placeholder="masukan jumlah stok">
+                                placeholder="masukan jumlah stok" value="{{ $tas->stok }}">
                         </div>
 
                     </div>

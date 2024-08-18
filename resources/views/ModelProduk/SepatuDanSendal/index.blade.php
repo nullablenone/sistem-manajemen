@@ -3,8 +3,8 @@
 
 @section('title-content')
     <div>
-        <h3 class="fw-bold mb-3">Model Produk</h3>
-        <h6 class="op-7 mb-2">Manajemen Model Produk Sepatu Dan Sendal Gayata</h6>
+        <h3 class="fw-bold mb-3">Model</h3>
+        <h6 class="op-7 mb-2">Manajemen Model Sepatu Dan Sendal Gayata</h6>
     </div>
     <div class="ms-md-auto py-2 py-md-0">
         <a href="{{ route('modelProduk.create') }}" class="btn btn-secondary"><span class="btn-label">
@@ -23,7 +23,9 @@
 
     <div class="card">
         <div class="card-header">
-            <div class="card-title">Model Produk</div>
+            <div class="card-head-row">
+                <div class="card-title">Statistics</div>
+            </div>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-hover">
@@ -76,7 +78,7 @@
 
                     swal({
                         title: "Apakah kamu yakin?",
-                        text: "Kamu tidak dapat mengembalikan ini!",
+                        text: "Data Yang Terkait Akan Ikut Terhapus",
                         icon: "warning",
                         buttons: {
                             cancel: {

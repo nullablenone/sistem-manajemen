@@ -24,7 +24,9 @@
 
     <div class="card">
         <div class="card-header">
-            <div class="card-title">Ukuran Produk</div>
+            <div class="card-head-row">
+                <div class="card-title">Statistics</div>
+            </div>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-hover">
@@ -77,7 +79,7 @@
 
                     swal({
                         title: "Apakah kamu yakin?",
-                        text: "Kamu tidak dapat mengembalikan ini!",
+                        text: "Data Yang Terkait Akan Ikut Terhapus",
                         icon: "warning",
                         buttons: {
                             cancel: {

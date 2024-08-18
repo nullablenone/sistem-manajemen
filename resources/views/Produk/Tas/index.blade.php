@@ -4,7 +4,7 @@
 @section('title-content')
     <div>
         <h3 class="fw-bold mb-3">Produk</h3>
-        <h6 class="op-7 mb-2">Manajemen Produk Tas</h6>
+        <h6 class="op-7 mb-2">Manajemen Produk Tas Gayata</h6>
     </div>
     <div class="ms-md-auto py-2 py-md-0">
         <a href="{{ route('tas.create') }}" class="btn btn-secondary"><span class="btn-label">
@@ -23,24 +23,41 @@
 
     <div class="card">
         <div class="card-header">
-            <div class="card-title">Produk Tas</div>
+            <div class="card-head-row">
+                <div class="card-title">Statistics</div>
+                @if (Auth::user()->hasRole('super admin'))
+                    <div class="card-tools">
+                        <a href="#" class="btn btn-label-success btn-round btn-sm me-2">
+                            <span class="btn-label">
+                                <i class="fa fa-pencil"></i>
+                            </span>
+                            Export
+                        </a>
+                        <a href="#" class="btn btn-label-info btn-round btn-sm">
+                            <span class="btn-label">
+                                <i class="fa fa-print"></i>
+                            </span>
+                            Print
+                        </a>
+                    </div>
+                @endif
+            </div>
         </div>
         <div class="card-body">
             <table class="table table-bordered table-hover">
 
-                {{-- head table --}}
+                {{-- Head Table --}}
                 <thead class="bg-light">
                     <tr>
                         <th class="text-center align-middle">NO</th>
                         <th class="text-center align-middle">Model</th>
                         <th class="text-center align-middle">Stok</th>
                         <th class="text-center align-middle">Total Stok</th>
-                        <th class="text-center align-middle">Sisa</th>
                         <th class="text-center align-middle">Action</th>
                     </tr>
                 </thead>
 
-                {{-- body table --}}
+                {{-- Body Table --}}
                 <tbody>
                     @foreach ($tas as $index => $item)
                         <tr>
@@ -48,24 +65,18 @@
                             <td class="text-center align-middle">{{ $item->model->nama }}</td>
                             <td class="text-center align-middle">{{ $item->stok }}</td>
                             <td class="text-center align-middle">{{ $item->stok }}</td>
-                            <!-- Total stok sama dengan stok karena tidak ada ukuran -->
-                            <td class="text-center align-middle">{{ $item->stok }}</td>
-                            <!-- Sementara diisi dengan stok -->
                             <td class="text-center align-middle">
-                                <a class="" href="{{ route('tas.edit', $item->id) }}">Manage</a>
+                                <a href="{{ route('tas.manage', $item->id) }}">Manage</a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
 
-                {{-- footer table --}}
+                {{-- Footer Table --}}
                 <tfoot>
                     <tr>
-                        <th colspan="3" class="text-center">TOTAL</th>
-                        <th class="text-center">{{ $tas->sum('stok') }}</th> <!-- Total semua stok -->
-                        <th class="text-center">{{ $tas->sum('stok') }}</th>
-                        <!-- Total sisa sementara sama dengan total stok -->
-                        <th></th>
+                        <th colspan="2" class="text-center align-middle">TOTAL</th>
+                        <th colspan="3" class="text-center align-middle">{{ $tas->sum('stok') }}</th>
                     </tr>
                 </tfoot>
             </table>
@@ -76,7 +87,7 @@
         <script>
             $(document).ready(function() {
                 $('.delete-btn').click(function(e) {
-                    e.preventDefault(); // Prevent default button behavior
+                    e.preventDefault();
 
                     const form = $(this).closest('.delete-form');
 
@@ -97,7 +108,7 @@
                         },
                     }).then((willDelete) => {
                         if (willDelete) {
-                            form.submit(); // Submit the form
+                            form.submit();
                             swal("Dihapus!", "Data kamu sudah dihapus.", {
                                 icon: "success",
                                 buttons: {

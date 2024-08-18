@@ -75,15 +75,16 @@
                         </li>
 
                         <!-- Produk -->
-                        <li class="nav-item {{ Request::routeIs('sepatuSendal.*') ? 'active' : '' }}">
+                        <li
+                            class="nav-item {{ Request::routeIs('sepatuSendal.*') || Request::routeIs('tas.*') ? 'active' : '' }}">
                             <a data-bs-toggle="collapse" href="#base"
-                                class="{{ Request::routeIs('sepatuSendal.*') ? '' : 'collapsed' }}"
-                                aria-expanded="{{ Request::routeIs('sepatuSendal.*') ? 'true' : 'false' }}">
+                                class="{{ Request::routeIs('sepatuSendal.*') || Request::routeIs('tas.*') ? '' : 'collapsed' }}"
+                                aria-expanded="{{ Request::routeIs('sepatuSendal.*') || Request::routeIs('tas.*') ? 'true' : 'false' }}">
                                 <i class="fas fa-layer-group"></i>
                                 <p>Produk</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse {{ Request::routeIs('sepatuSendal.*') ? 'show' : '' }}"
+                            <div class="collapse {{ Request::routeIs('sepatuSendal.*') || Request::routeIs('tas.*') ? 'show' : '' }}"
                                 id="base">
                                 <ul class="nav nav-collapse">
                                     <li class="{{ Request::routeIs('sepatuSendal.index') ? 'active' : '' }}">
@@ -92,7 +93,7 @@
                                         </a>
                                     </li>
 
-                                    <li class="{{ Request::is('tas.*') ? 'active' : '' }}">
+                                    <li class="{{ Request::routeIs('tas.*') ? 'active' : '' }}">
                                         <a href="{{ route('tas.index') }}">
                                             <span class="sub-item">Tas</span>
                                         </a>
