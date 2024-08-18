@@ -10,7 +10,7 @@ use App\Http\Controllers\UkuranProdukController;
 use App\Http\Controllers\TasController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::middleware(['auth'])->group(function () {
