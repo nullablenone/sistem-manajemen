@@ -113,6 +113,8 @@ class SepatuSendalController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $sepatu = SepatuSendal::find($id);
+        $sepatu->delete();
+        return redirect()->back()->with('success', 'Data berhasil dihapus');
     }
 }

@@ -86,6 +86,8 @@ class TasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $tas = Tas::find($id);
+        $tas->delete();
+        return redirect()->back()->with('success', 'Data berhasil dihapus');
     }
 }

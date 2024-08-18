@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('sepatu-sendal', [SepatuSendalController::class, 'store'])->name('sepatuSendal.store');
     Route::get('sepatu-sendal/{id}/edit', [SepatuSendalController::class, 'edit'])->name('sepatuSendal.edit');
     Route::put('sepatu-sendal/{id}', [SepatuSendalController::class, 'update'])->name('sepatuSendal.update');
+    Route::delete('sepatu-sendal/{id}', [SepatuSendalController::class, 'destroy'])->name('sepatuSendal.destroy');
 
     // route tas
     Route::get('tas', [TasController::class, 'index'])->name('tas.index');
@@ -33,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('tas', [TasController::class, 'store'])->name('tas.store');
     Route::get('tas/{id}/edit', [TasController::class, 'manage'])->name('tas.manage');
     Route::put('tas/{id}', [TasController::class, 'updateManage'])->name('tas.updateManage');
+    Route::delete('tas/{id}', [TasController::class, 'destroy'])->name('tas.destroy');
 
 
     // model produk

@@ -33,12 +33,10 @@
                             </span>
                             Export
                         </a>
-                        <a href="#" class="btn btn-label-info btn-round btn-sm">
-                            <span class="btn-label">
+                        <button class="btn btn-label-info btn-round btn-sm" onclick="window.print()"> <span
+                                class="btn-label">
                                 <i class="fa fa-print"></i>
-                            </span>
-                            Print
-                        </a>
+                            </span>Print</button>
                     </div>
                 @endif
             </div>
@@ -52,7 +50,6 @@
                         <th class="text-center align-middle">NO</th>
                         <th class="text-center align-middle">Model</th>
                         <th class="text-center align-middle">Stok</th>
-                        <th class="text-center align-middle">Total Stok</th>
                         <th class="text-center align-middle">Action</th>
                     </tr>
                 </thead>
@@ -64,9 +61,21 @@
                             <td class="text-center align-middle">{{ $loop->iteration }}</td>
                             <td class="text-center align-middle">{{ $item->model->nama }}</td>
                             <td class="text-center align-middle">{{ $item->stok }}</td>
-                            <td class="text-center align-middle">{{ $item->stok }}</td>
                             <td class="text-center align-middle">
-                                <a href="{{ route('tas.manage', $item->id) }}">Manage</a>
+                                <a class="btn btn-success" href="{{ route('tas.manage', $item->id) }}"><span
+                                        class="btn-label">
+                                        <i class="fa fa-check"></i>
+                                    </span>Manage</a>
+
+                                <form action="{{ route('tas.destroy', $item->id) }}" method="POST"
+                                    class="delete-form d-inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="btn btn-danger delete-btn">
+                                        <span class="btn-label"><i class="fa fa-exclamation-circle"></i></span>
+                                        Hapus
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -75,8 +84,8 @@
                 {{-- Footer Table --}}
                 <tfoot>
                     <tr>
-                        <th colspan="2" class="text-center align-middle">TOTAL</th>
-                        <th colspan="3" class="text-center align-middle">{{ $tas->sum('stok') }}</th>
+                        <th colspan="" class="text-center align-middle">TOTAL</th>
+                        <th colspan="2" class="text-center align-middle">{{ $tas->sum('stok') }}</th>
                     </tr>
                 </tfoot>
             </table>

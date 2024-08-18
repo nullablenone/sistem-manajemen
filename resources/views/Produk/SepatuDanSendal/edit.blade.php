@@ -8,12 +8,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Edit Produk</div>
+                        <div class="card-title">Manage Produk</div>
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-warning">
-                            <div class="text-muted">Semua Form Harus di Isi!</div>
-                        </div>
                         <div class="row">
                             <div class="col-md">
                                 <div class="col-md-6 col-lg-4">

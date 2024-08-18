@@ -34,12 +34,10 @@
                             </span>
                             Export
                         </a>
-                        <a href="#" class="btn btn-label-info btn-round btn-sm">
-                            <span class="btn-label">
+                        <button class="btn btn-label-info btn-round btn-sm" onclick="window.print()"> <span
+                                class="btn-label">
                                 <i class="fa fa-print"></i>
-                            </span>
-                            Print
-                        </a>
+                            </span>Print</button>
                     </div>
                 @endif
             </div>
@@ -80,7 +78,21 @@
                                 <td class="text-center">{{ $stok }}</td>
                             @endforeach
                             <td class="text-center">{{ $totalStok }}</td>
-                            <td><a href="{{ route('sepatuSendal.edit', $item->id) }}">Manage</a></td>
+                            <td><a class="btn btn-success btn-sm" href="{{ route('sepatuSendal.edit', $item->id) }}"><span
+                                        class="btn-label">
+                                        <i class="fa fa-check"></i>
+                                    </span>Manage</a>
+
+                                <form action="{{ route('sepatuSendal.destroy', $item->id) }}" method="POST"
+                                    class="delete-form d-inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="btn btn-danger delete-btn btn-sm">
+                                        <span class="btn-label"><i class="fa fa-exclamation-circle"></i></span>
+                                        Hapus
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -102,15 +114,53 @@
         </div>
     </div>
 
-    <script>
-        function printTable() {
-            var printContent = document.getElementById('table-to-print').outerHTML;
-            var originalContent = document.body.innerHTML;
-            document.body.innerHTML = `<html><head><title>Print</title></head><body>${printContent}</body></html>`;
-            window.print();
-            document.body.innerHTML = originalContent;
-        }
-    </script>
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                $('.delete-btn').click(function(e) {
+                    e.preventDefault(); // Prevent default button behavior
 
+                    const form = $(this).closest('.delete-form');
+
+                    swal({
+                        title: "Apakah kamu yakin?",
+                        text: "Kamu tidak dapat mengembalikan ini!",
+                        icon: "warning",
+                        buttons: {
+                            cancel: {
+                                visible: true,
+                                text: "Tidak, Batalkan!",
+                                className: "btn btn-danger",
+                            },
+                            confirm: {
+                                text: "Ya, Hapus!",
+                                className: "btn btn-success",
+                            },
+                        },
+                    }).then((willDelete) => {
+                        if (willDelete) {
+                            form.submit(); // Submit the form
+                            swal("Dihapus!", "Data kamu sudah dihapus.", {
+                                icon: "success",
+                                buttons: {
+                                    confirm: {
+                                        className: "btn btn-success",
+                                    },
+                                },
+                            });
+                        } else {
+                            swal("Data kamu Aman!", {
+                                buttons: {
+                                    confirm: {
+                                        className: "btn btn-success",
+                                    },
+                                },
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+    @endpush
 
 @endsection
