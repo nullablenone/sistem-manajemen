@@ -9,12 +9,21 @@
         </div>
     @endif
 
-    <div class="ms-md-auto py-2 py-md-0">
-        <a href="#" id="toggleManageSidebar" class="btn btn-label-info btn-round me-2">Manage</a>
+    <div class="d-flex align-items-center ms-md-auto py-2 py-md-0 gap-2">
+        <div class="dropdown">
+            <button class="btn btn-label-info btn-round me-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Manage
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ route('sepatuSendal.index') }}">Sepatu & Sendal</a></li>
+                <li><a class="dropdown-item" href="{{ route('tas.index') }}">Tas</a></li>
+            </ul>
+        </div>
         @if (Auth::user()->hasRole('super admin'))
-            <a href="{{ route('createAkun') }}" class="btn btn-primary btn-round">Tambah Admin</a>
+            <a href="{{ route('createAkun') }}" class="btn btn-primary btn-round">Add Admin</a>
         @endif
     </div>
+
 @endsection
 
 @section('content')
@@ -31,27 +40,6 @@
     </div>
 
     <div class="row">
-        @if (Auth::user()->hasRole('super admin'))
-            <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col-icon">
-                                <div class="icon-big text-center icon-primary bubble-shadow-small">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                            </div>
-                            <div class="col col-stats ms-3 ms-sm-0">
-                                <div class="numbers">
-                                    <p class="card-category">Admin</p>
-                                    <h4 class="card-title">{{ $admin->count() }}</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
         <div class="col-sm-6 col-md-3">
             <div class="card card-stats card-round">
                 <div class="card-body">
@@ -128,5 +116,26 @@
                 </div>
             </div>
         </div>
+        @if (Auth::user()->hasRole('super admin'))
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Admin</p>
+                                    <h4 class="card-title">{{ $admin->count() }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
