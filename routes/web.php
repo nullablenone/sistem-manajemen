@@ -1,13 +1,14 @@
 <?php
 
+use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ModelTasController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ModelProdukController;
 use App\Http\Controllers\SepatuSendalController;
 use App\Http\Controllers\UkuranProdukController;
-use App\Http\Controllers\TasController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -16,7 +17,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     // dashboard
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::get('dashboard/register', [DashboardController::class, 'createAkun'])->name('createAkun');
+    Route::get('dashboard/register', [DashboardController::class, 'createAkun'])->middleware(CheckRole::class)->name('createAkun');
     Route::post('dashboard/', [DashboardController::class, 'storeAkun'])->name('storeAkun');
 
     // produk 
