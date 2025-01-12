@@ -18,7 +18,7 @@ Menyediakan platform untuk memudahkan pengelolaan produk, model, dan ukuran prod
 ## 🛠️ Teknologi yang Digunakan
 
 - **Backend**: Laravel dengan Laravel Breeze untuk otentikasi.  
-- **Frontend**: Bootstrap dan Sweet Alert.  
+- **Frontend**: Bootstrap, Javascript, Sweet Alert.  
 - **Database**: MySQL.  
 
 ## 🚀 Cara Menjalankan Proyek
