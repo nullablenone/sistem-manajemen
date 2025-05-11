@@ -1,29 +1,29 @@
-# Website Manajemen Produk
+# Product Management Website
 
-Website ini adalah proyek untuk memanajemen produk, dirancang menggunakan Laravel dan beberapa teknologi pendukung.
+This website is a project for managing products, designed using Laravel and several supporting technologies.
 
-## 🎯 Tujuan Proyek
+## 🎯 Project Objective
 
-Menyediakan platform untuk memudahkan pengelolaan produk, model, dan ukuran produk.
+Provide a platform to simplify the management of products, product models, and product sizes.
 
-## ✨ Fitur Utama
+## ✨ Main Features
 
-- **Login**: Akun admin dan super admin menggunakan Laravel Breeze.  
-- **Dashboard**: Tampilan utama untuk manajemen.  
-- **Manajemen Produk**: Mengelola produk.  
-- **Manajemen Model Produk**: Mengelola data model produk.  
-- **Manajemen Ukuran Produk**: Mengelola ukuran produk.  
-- **Seeder**: Menyediakan data awal untuk akun admin, super admin, model, dan ukuran produk.
+- **Login**: Admin and super admin accounts using Laravel Breeze.  
+- **Dashboard**: Main interface for management.  
+- **Product Management**: Manage products.  
+- **Product Model Management**: Manage product model data.  
+- **Product Size Management**: Manage product sizes.  
+- **Seeder**: Provides initial data for admin, super admin, product models, and product sizes.
 
-## 🛠️ Teknologi yang Digunakan
+## 🛠️ Technologies Used
 
-- **Backend**: Laravel dengan Laravel Breeze untuk otentikasi.  
+- **Backend**: Laravel with Laravel Breeze for authentication.  
 - **Frontend**: Bootstrap, Javascript, Sweet Alert.  
 - **Database**: MySQL.  
 
-## 🚀 Cara Menjalankan Proyek
+## 🚀 How to Run the Project
 
-1. Clone repositori ini:  
+1. Clone this repository:  
    ```bash
    git clone <repository-url>
    cd <repository-folder>
@@ -35,19 +35,17 @@ Menyediakan platform untuk memudahkan pengelolaan produk, model, dan ukuran prod
    npm install
    ```
 
-3. Buat file `.env` dan atur konfigurasi database. Lalu jalankan:  
+3. Create a `.env` file and configure the database. Then run:  
    ```bash
    php artisan migrate --seed
    ```
 
-4. Jalankan server:  
+4. Run the server:  
    ```bash
    npm run dev
    php artisan serve
    ```
 
-5. Akses aplikasi di `http://localhost:8000`.
+5. Access the application at `http://localhost:8000`.
 
-## 🚧 Status Proyek
 
-Proyek ini siap digunakan dengan fitur-fitur dasar untuk manajemen produk.
