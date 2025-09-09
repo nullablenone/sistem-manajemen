@@ -28,27 +28,4 @@ class DashboardController extends Controller
         return view('Dashboard.index', compact('admin', 'sepatuSendal', 'modelSepatu', 'tas', 'modelTas'));
     }
 
-    public function createAkun()
-    {
-        return view('Dashboard.register');
-    }
-
-    public function storeAkun(Request $request)
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
-            'password' => ['required', 'confirmed'],
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
-
-        return redirect()->route('dashboard.index',)->with('success', 'Berhasil Membuat Admin Baru');
-    }
 }

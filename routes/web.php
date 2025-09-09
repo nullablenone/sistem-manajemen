@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ModelProdukController;
 use App\Http\Controllers\SepatuSendalController;
 use App\Http\Controllers\UkuranProdukController;
+use App\Http\Controllers\ManagementUsersController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -17,8 +18,6 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     // dashboard
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::get('dashboard/register', [DashboardController::class, 'createAkun'])->middleware(CheckRole::class)->name('createAkun');
-    Route::post('dashboard/', [DashboardController::class, 'storeAkun'])->name('storeAkun');
 
     // produk 
     // route sepatu dan sendal
@@ -65,12 +64,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('ukuran-produk/{id}/edit', [UkuranProdukController::class, 'edit'])->name('ukuranProduk.edit');
     Route::put('ukuran-produk/{id}', [UkuranProdukController::class, 'update'])->name('ukuranProduk.update');
     Route::delete('ukuran-produk/{id}', [UkuranProdukController::class, 'destroy'])->name('ukuranProduk.destroy');
-});
 
-Route::middleware('auth')->group(function () {
+
+    // management user for user
+    Route::get('admin', [ManagementUsersController::class, 'index'])->middleware(CheckRole::class)->name('managementUsers.index');
+    Route::get('admin/register', [ManagementUsersController::class, 'createAkun'])->middleware(CheckRole::class)->name('managementUsers.create');
+    Route::post('admin', [ManagementUsersController::class, 'storeAkun'])->middleware(CheckRole::class)->name('managementUsers.store');
+    Route::delete('admin/{id}', [ManagementUsersController::class, 'destroy'])->middleware(CheckRole::class)->name('managementUsers.destroy');
+
+    // _
     Route::get('/profile', [ProfileController::class, 'edit'])->middleware(CheckRole::class)->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->middleware(CheckRole::class)->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->middleware(CheckRole::class)->name('profile.destroy');
 });
+
 
 require __DIR__ . '/auth.php';

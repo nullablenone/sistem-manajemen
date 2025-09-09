@@ -17,11 +17,11 @@
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{ route('sepatuSendal.index') }}">Sepatu & Sendal</a></li>
                 <li><a class="dropdown-item" href="{{ route('tas.index') }}">Tas</a></li>
+                @if (Auth::user()->hasRole('super admin'))
+                    <li><a class="dropdown-item" href="{{ route('managementUsers.index') }}">admin</a></li>
+                @endif
             </ul>
         </div>
-        @if (Auth::user()->hasRole('super admin'))
-            <a href="{{ route('createAkun') }}" class="btn btn-primary btn-round">Add Admin</a>
-        @endif
     </div>
 
 @endsection

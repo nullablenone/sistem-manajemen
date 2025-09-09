@@ -149,6 +149,15 @@
                             </div>
                         </li>
 
+                        @if (Auth::user()->hasRole('super admin'))
+                            <li class="nav-item {{ Request::routeIs('managementUsers.index') ? 'active' : '' }}">
+                                <a href="{{ route('managementUsers.index') }}">
+                                    <i class="fas fa-users"></i>
+                                    <p>Manajemen Admin</p>
+                                </a>
+                            </li>
+                        @endif
+
                     </ul>
                 </div>
             </div>
@@ -191,11 +200,11 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <!-- Profile Link -->
                                     @if (Auth::user()->hasRole('super admin'))
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                            {{ __('Profile') }}
-                                        </a>
-                                    </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                                {{ __('Profile') }}
+                                            </a>
+                                        </li>
                                     @endif
                                     <li>
                                         <hr class="dropdown-divider">
