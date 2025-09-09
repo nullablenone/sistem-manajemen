@@ -190,11 +190,13 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <!-- Profile Link -->
+                                    @if (Auth::user()->hasRole('super admin'))
                                     <li>
                                         <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                             {{ __('Profile') }}
                                         </a>
                                     </li>
+                                    @endif
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
