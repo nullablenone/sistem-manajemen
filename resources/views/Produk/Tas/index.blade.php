@@ -25,20 +25,6 @@
         <div class="card-header">
             <div class="card-head-row">
                 <div class="card-title">Statistics</div>
-                @if (Auth::user()->hasRole('super admin'))
-                    <div class="card-tools">
-                        <a href="#" class="btn btn-label-success btn-round btn-sm me-2">
-                            <span class="btn-label">
-                                <i class="fa fa-pencil"></i>
-                            </span>
-                            Export
-                        </a>
-                        <button class="btn btn-label-info btn-round btn-sm" onclick="window.print()"> <span
-                                class="btn-label">
-                                <i class="fa fa-print"></i>
-                            </span>Print</button>
-                    </div>
-                @endif
             </div>
         </div>
         <div class="card-body">
