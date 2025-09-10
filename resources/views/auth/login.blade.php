@@ -1,15 +1,32 @@
 <x-guest-layout>
+
+    {{-- CATATAN LOGIN DITAMBAHKAN DI SINI --}}
+    <div class="mb-4 rounded-md bg-blue-50 p-4 text-sm text-blue-800" role="alert">
+        <p class="font-bold">Informasi Akun Demo:</p>
+        <ul class="mt-2 list-inside list-disc">
+            <li>
+                <strong>Login sebagai Admin:</strong>
+                <ul class="list-inside pl-4">
+                    <li>Email: <code>admin@admin.test</code></li>
+                    <li>Password: <code>admin@admin.test</code></li>
+                </ul>
+            </li>
+            <li class="mt-2">
+                Untuk login sebagai <strong>Super Admin</strong>, silakan hubungi developer.
+            </li>
+        </ul>
+    </div>
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                autofocus autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
